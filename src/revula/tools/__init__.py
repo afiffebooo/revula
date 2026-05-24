@@ -547,6 +547,11 @@ class ToolRegistry:
     def _normalize_input_schema(self, input_schema: dict[str, Any]) -> dict[str, Any]:
         """Harden and standardize input schemas at registration time."""
         schema = copy.deepcopy(input_schema)
+        # PATCH: Strip top-level oneOf/anyOf/allOf — Anthropic API does not support them.
+        # These are typically used for "required one of X or Y" constraints which
+        # the tool handler already validates internally.
+        for key in ("oneOf", "anyOf", "allOf"):
+            schema.pop(key, None)
         self._enforce_object_additional_properties(schema)
         self._inject_common_schema_properties(schema)
         self._apply_property_constraints(schema)
