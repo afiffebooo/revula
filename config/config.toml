@@ -1,0 +1,31 @@
+[security]
+allowed_dirs = ["/workspace", "/tmp"]
+max_memory_mb = 4096
+default_timeout = 300
+max_timeout = 1200
+
+[tools.ghidra_headless]
+path = "/opt/ghidra/support/analyzeHeadless"
+
+[tools.radare2]
+path = "/usr/bin/r2"
+
+[tools.jadx]
+path = "/usr/local/bin/jadx"
+
+[tools.retdec_decompiler]
+path = "/usr/local/bin/retdec-decompiler"
+
+[rate_limit]
+enabled = true
+global_rpm = 120
+per_tool_rpm = 30
+burst_size = 10
+
+[tool_naming]
+namespace = "revula"
+include_legacy_names = false
+
+[execution]
+subprocess_retries = 1
+subprocess_retry_backoff_ms = 250

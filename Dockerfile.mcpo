@@ -1,0 +1,13 @@
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+
+USER root
+
+RUN python -m pip install --no-cache-dir --upgrade mcpo uv
+
+COPY docker/entrypoint-mcpo.sh /usr/local/bin/revula-mcpo
+RUN chmod +x /usr/local/bin/revula-mcpo
+
+EXPOSE 8000
+
+ENTRYPOINT ["/usr/local/bin/revula-mcpo"]
