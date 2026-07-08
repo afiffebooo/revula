@@ -5,7 +5,7 @@ set -euo pipefail
 
 MCPO_HOST="${MCPO_HOST:-0.0.0.0}"
 MCPO_PORT="${MCPO_PORT:-8000}"
-REVULA_CMD="${REVULA_CMD:-revula}"
+REVULA_CMD="${REVULA_CMD:-/opt/venv/bin/revula}"
 
 exec mcpo \
   --host "${MCPO_HOST}" \
